@@ -92,3 +92,87 @@ Repository Layer
   |
   v
 MySQL Database
+
+## Installation and Setup
+
+### Prerequisites
+
+Make sure the following are installed:
+
+- Java 21 or higher
+- MySQL
+- Git
+
+### Database Configuration
+
+The application uses MySQL for persistent data storage.
+
+Configure the database connection in:
+
+```text
+src/main/resources/application.properties
+```
+
+The database password is provided through the `DB_PASSWORD` environment variable and is not stored in the GitHub repository.
+
+For macOS/Linux:
+
+```bash
+export DB_PASSWORD="your_mysql_password"
+```
+
+### Run the Application
+
+From the project root directory, run:
+
+```bash
+./mvnw spring-boot:run
+```
+
+The application will start on:
+
+```text
+http://localhost:8080
+```
+
+### REST API Endpoints
+
+The application provides the following main REST endpoints:
+
+| Resource | Endpoint |
+|---|---|
+| Users | `/api/users` |
+| Vehicles | `/api/vehicles` |
+| Charging Stations | `/api/stations` |
+| Charging Slots | `/api/slots` |
+| Bookings | `/api/bookings` |
+| Charging Sessions | `/api/sessions` |
+| Statistics | `/api/statistics` |
+
+### Example Application Workflow
+
+The main workflow of the system is:
+
+1. Create a user.
+2. Register an electric vehicle.
+3. Create a charging slot.
+4. Create a booking for the charging slot.
+5. The system checks for booking conflicts.
+6. Create a charging session for the booking.
+7. Start the charging session.
+8. Complete the charging session with energy consumption data.
+9. View system statistics.
+
+### Build and Test
+
+To run the automated tests:
+
+```bash
+./mvnw clean test
+```
+
+To build the application:
+
+```bash
+./mvnw clean package
+```
